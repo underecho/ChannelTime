@@ -7,8 +7,8 @@ from datetime import datetime
 prev_time = 0
 
 TOKEN = os.environ["TOKEN"]
-GUILD_ID = os.environ["GUILD_ID"]
-CATEGORY_ID = os.environ["CATEGORY_ID"]
+GUILD_ID = int(os.environ["GUILD_ID"])
+CATEGORY_ID = int(os.environ["CATEGORY_ID"])
 MES = os.environ["MES"]
 # 接続に必要なオブジェクトを生成
 client = discord.Client()
@@ -35,8 +35,8 @@ async def on_ready():
         if i.category == c:
             i.delete()
 
-    timeChannel = await c.create_text_channel('Time', overwrites=overwrites, category=c)
-    await c.create_text_channel(MES, overwrites=overwrites, category=c)
+    timeChannel = await guild.create_text_channel('Time', overwrites=overwrites, category=c)
+    await guild.create_text_channel(MES, overwrites=overwrites, category=c)
 
     loop(timeChannel).start()
 
