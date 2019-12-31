@@ -34,8 +34,8 @@ async def init():
         guild.default_role: discord.PermissionOverwrite(read_messages=False),
         guild.me: discord.PermissionOverwrite(read_messages=False)
     }
-    c = await client.get_channel(CATEGORY_ID)
-    ch = await client.get_all_channels()
+    c = client.get_channel(CATEGORY_ID)
+    ch = client.get_all_channels()
     for i in ch:
         if i.category == c:
             i.delete()
