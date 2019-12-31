@@ -35,8 +35,8 @@ async def init():
             if i.category == c:
                 await i.delete()
 
-        timeChannel = await guild.create_text_channel('Time', overwrites=overwrites, category=c)
-        await guild.create_text_channel(MES, overwrites=overwrites, category=c)
+        timeChannel = await guild.create_voice_channel('Time', overwrites=overwrites, category=c)
+        await guild.create_voice_channel(MES, overwrites=overwrites, category=c)
         loops.setup(bot, timeChannel)
        
 bot.run(TOKEN)
