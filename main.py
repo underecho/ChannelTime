@@ -15,12 +15,12 @@ MES = os.environ["MES"]
 client = discord.Client()
 
 @tasks.loop(seconds=5)
-async def loop(channel):
+async def loop():
     global prev_time
     # 現在の時刻
     now = datetime.now().strftime('%H:%M')
     if now != prev_time:
-        await channel.edit(name=now)
+        await timeChannel.edit(name=now)
 
 #ループ処理実行
 @client.event
@@ -42,8 +42,9 @@ async def init():
 
     timeChannel = await guild.create_text_channel('Time', overwrites=overwrites, category=c)
     await guild.create_text_channel(MES, overwrites=overwrites)
+    loop.start()
 
-loop.start(timeChannel)
-
-# Botの起動とDiscordサーバーへの接続
-client.run(TOKEN)
+if __name__ == "__main__":
+    
+    # Botの起動とDiscordサーバーへの接続
+    client.run(TOKEN)
