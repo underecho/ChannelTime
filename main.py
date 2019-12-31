@@ -5,6 +5,7 @@ from discord.ext import tasks
 from datetime import datetime 
 
 prev_time = 0
+timeChannel = None
 
 TOKEN = os.environ["TOKEN"]
 GUILD_ID = int(os.environ["GUILD_ID"])
@@ -24,6 +25,10 @@ async def loop(channel):
 #ループ処理実行
 @client.event
 async def on_ready():
+    await init()
+
+async def init():
+    global timeChannel
     guild = await client.get_guild(GUILD_ID)
     overwrites = {
         guild.default_role: discord.PermissionOverwrite(read_messages=False),
@@ -38,7 +43,7 @@ async def on_ready():
     timeChannel = await guild.create_text_channel('Time', overwrites=overwrites, category=c)
     await guild.create_text_channel(MES, overwrites=overwrites)
 
-    #loop(timeChannel).start()
+loop(timeChannel).start()
 
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
