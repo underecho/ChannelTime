@@ -8,7 +8,6 @@ prev_time = 0
 GUILD_ID = int(os.environ["GUILD_ID"])
 CATEGORY_ID = int(os.environ["CATEGORY_ID"])
 MES = os.environ["MES"]
-timeChannel = None
 
 class loops(commands.Cog):
 
@@ -23,7 +22,7 @@ class loops(commands.Cog):
         # 現在の時刻
         now = datetime.now().strftime('%H:%M')
         if now != prev_time:
-            await timeChannel.edit(name=now)
+            await self.timeChannel.edit(name=now)
 
 
 def setup(bot, timeChannel):
