@@ -37,5 +37,6 @@ async def init():
 
         timeChannel = await guild.create_text_channel('Time', overwrites=overwrites, category=c)
         await guild.create_text_channel(MES, overwrites=overwrites, category=c)
+        loops.setup(bot, timeChannel)
        
 bot.run(TOKEN)

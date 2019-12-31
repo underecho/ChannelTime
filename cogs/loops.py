@@ -26,7 +26,7 @@ class loops(commands.Cog):
             await timeChannel.edit(name=now)
 
 
-def setup(bot):
+def setup(bot, timeChannel):
     bot.add_cog(loops(bot, timeChannel))
 
 
