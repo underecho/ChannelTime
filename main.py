@@ -38,7 +38,7 @@ async def init():
     ch = client.get_all_channels()
     for i in ch:
         if i.category == c:
-            i.delete()
+            await i.delete()
 
     timeChannel = await guild.create_text_channel('Time', overwrites=overwrites, category=c)
     await guild.create_text_channel(MES, overwrites=overwrites)
