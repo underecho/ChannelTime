@@ -10,7 +10,6 @@ from cogs import loops
 prev_time = 0
 GUILD_ID = int(os.environ["GUILD_ID"])
 CATEGORY_ID = int(os.environ["CATEGORY_ID"])
-MES = os.environ["MES"]
 timeChannel = None
 
 TOKEN = os.environ["TOKEN"]
@@ -36,7 +35,6 @@ async def init():
                 await i.delete()
 
         timeChannel = await guild.create_voice_channel('Time', overwrites=overwrites, category=c)
-        await guild.create_voice_channel(MES, overwrites=overwrites, category=c)
         loops.setup(bot, timeChannel)
        
 bot.run(TOKEN)

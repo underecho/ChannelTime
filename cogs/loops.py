@@ -23,7 +23,7 @@ class loops(commands.Cog):
         JST = timezone(timedelta(hours=+9), 'JST')
         now = datetime.now(JST).strftime('%m/%d - %H:%M')
         if now != prev_time:
-            text = f"🕒 {now}(JST)"
+            text = f"🕒 {now} (JST)"
             await self.timeChannel.edit(name=text)
 
 
