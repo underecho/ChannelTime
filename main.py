@@ -29,7 +29,7 @@ async def on_ready():
 
 async def init():
     global timeChannel
-    guild = await client.get_guild(GUILD_ID)
+    guild = client.get_guild(GUILD_ID)
     overwrites = {
         guild.default_role: discord.PermissionOverwrite(read_messages=False),
         guild.me: discord.PermissionOverwrite(read_messages=False)
