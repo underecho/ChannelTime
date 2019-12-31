@@ -2,7 +2,7 @@ import os
 import discord
 from discord.ext import commands
 from discord.ext import tasks
-from datetime import datetime 
+from datetime import datetime, timedelta, timezone
 
 prev_time = 0
 GUILD_ID = int(os.environ["GUILD_ID"])
@@ -20,9 +20,11 @@ class loops(commands.Cog):
     async def loops(self):
         global prev_time
         # 現在の時刻
-        now = datetime.now().strftime('%H:%M')
+        JST = timezone(timedelta(hours=+9), 'JST')
+        now = datetime.now(JST).strftime('%H\:%M')
         if now != prev_time:
-            await self.timeChannel.edit(name=now)
+            text = f":clock3: ServerTime: {now}(JST)"
+            await self.timeChannel.edit(name=text)
 
 
 def setup(bot, timeChannel):
