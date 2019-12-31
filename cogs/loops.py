@@ -20,10 +20,11 @@ class loops(commands.Cog):
     async def loops(self):
         global prev_time
         # 現在の時刻
+        emoji = bot.emoji
         JST = timezone(timedelta(hours=+9), 'JST')
         now = datetime.now(JST).strftime('%m/%d - %H:%M')
         if now != prev_time:
-            text = f":clock3: {now}(JST)"
+            text = f"🕒 {now}(JST)"
             await self.timeChannel.edit(name=text)
 
 
