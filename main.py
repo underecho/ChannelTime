@@ -36,9 +36,9 @@ async def on_ready():
             i.delete()
 
     timeChannel = await guild.create_text_channel('Time', overwrites=overwrites, category=c)
-    await guild.create_text_channel(MES, overwrites=overwrites, category=c)
+    await guild.create_text_channel(MES, overwrites=overwrites)
 
-    loop(timeChannel).start()
+    #loop(timeChannel).start()
 
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
