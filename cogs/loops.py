@@ -21,7 +21,7 @@ class loops(commands.Cog):
         global prev_time
         # 現在の時刻
         JST = timezone(timedelta(hours=+9), 'JST')
-        now = datetime.now(JST).strftime('%m/%d - %H\:%M')
+        now = datetime.now(JST).strftime('%m/%d - %H:%M')
         if now != prev_time:
             text = f":clock3: {now}(JST)"
             await self.timeChannel.edit(name=text)
