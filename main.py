@@ -16,7 +16,7 @@ timeChannel = None
 TOKEN = os.environ["TOKEN"]
 
 # 接続に必要なオブジェクトを生成
-bot = commands.Bot()
+bot = commands.Bot(command_prefix="huiogdfsihugdfshuipfsgdihupdfsiphudsgfihup")
 
 @bot.event
 async def on_ready():
