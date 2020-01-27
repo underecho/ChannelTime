@@ -25,8 +25,8 @@ async def init():
         global timeChannel
         guild = bot.get_guild(GUILD_ID)
         overwrites = {
-            guild.default_role: discord.PermissionOverwrite(read_messages=False),
-            guild.me: discord.PermissionOverwrite(read_messages=False)
+            guild.default_role: discord.PermissionOverwrite(read_messages=True, connect=False),
+            guild.me: discord.PermissionOverwrite(read_messages=True, connect=False)
         }
         c = bot.get_channel(CATEGORY_ID)
         ch = bot.get_all_channels()
