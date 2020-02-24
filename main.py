@@ -24,19 +24,30 @@ async def init():
         c = {}
         for guild in bot.guilds:
             for j in guild.categories:
-                if j.name == "🕐 SERVER TIME":
-                    c[guild.id] = j
+                if j.name == "🕐 Server Time":
+                    c[guild.id] = j.id
+        else:
+            for a in bot.guilds:
+                try:
+                    print(f"founded:{c[a.id]}")
+                except:
+                    uiu = await a.create_category("🕐 Server Time")
+                    c[a.id] = uiu.id
+                for i in a.voice_channels:
+                    if i.type ==  discord.ChannelType.voice:
+                        if i.category_id == c[i.guild.id]:
+                            await i.delete()
 
-        ch = bot.get_all_channels()
-        for i in ch:
-            if i.category in c.values():
-                await i.delete()
         for temp in bot.guilds:
             overwrites = {
                 temp.default_role: discord.PermissionOverwrite(read_messages=True, connect=False),
                 temp.me: discord.PermissionOverwrite(read_messages=True, connect=False)
             }
-            timeChannel.append(await guild.create_voice_channel('Time', overwrites=overwrites, category=c[temp.id]))
+            print(type(c[temp.id]))
+            try:
+                timeChannel.append(await temp.create_voice_channel('Time', overwrites=overwrites, category=bot.get_channel(c[temp.id])))
+            except:
+                print("error")
         loops.setup(bot, timeChannel)
-       
+
 bot.run(TOKEN)
