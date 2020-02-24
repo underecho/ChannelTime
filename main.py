@@ -25,7 +25,7 @@ async def init():
         for guild in bot.guilds:
             for j in guild.categories:
                 if j.name == "🕐 SERVER TIME":
-                    c[guild] = j
+                    c[guild.id] = j
 
         ch = bot.get_all_channels()
         for i in ch:
@@ -36,7 +36,7 @@ async def init():
                 temp.default_role: discord.PermissionOverwrite(read_messages=True, connect=False),
                 temp.me: discord.PermissionOverwrite(read_messages=True, connect=False)
             }
-            timeChannel.append(await guild.create_voice_channel('Time', overwrites=overwrites, category=c[temp]))
+            timeChannel.append(await guild.create_voice_channel('Time', overwrites=overwrites, category=c[temp.id]))
         loops.setup(bot, timeChannel)
        
 bot.run(TOKEN)
