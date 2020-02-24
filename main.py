@@ -29,7 +29,7 @@ async def init():
 
         ch = bot.get_all_channels()
         for i in ch:
-            if i.category in c.values:
+            if i.category in c.values():
                 await i.delete()
         for temp in bot.guilds:
             overwrites = {
