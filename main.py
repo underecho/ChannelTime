@@ -8,9 +8,7 @@ from discord.ext import commands
 from cogs import loops 
 
 prev_time = 0
-GUILD_ID = int(os.environ["GUILD_ID"])
-CATEGORY_ID = int(os.environ["CATEGORY_ID"])
-timeChannel = None
+timeChannel = []
 
 TOKEN = os.environ["TOKEN"]
 
@@ -23,18 +21,22 @@ async def on_ready():
 
 async def init():
         global timeChannel
-        guild = bot.get_guild(GUILD_ID)
-        overwrites = {
-            guild.default_role: discord.PermissionOverwrite(read_messages=True, connect=False),
-            guild.me: discord.PermissionOverwrite(read_messages=True, connect=False)
-        }
-        c = bot.get_channel(CATEGORY_ID)
+        c = {}
+        for guild in bot.guilds:
+            for j in guild.categories:
+                if j.name == "🕐 SERVER TIME":
+                    c[guild] = j
+
         ch = bot.get_all_channels()
         for i in ch:
-            if i.category == c:
+            if i.category in c.values:
                 await i.delete()
-
-        timeChannel = await guild.create_voice_channel('Time', overwrites=overwrites, category=c)
+        for temp in bot.guilds:
+            overwrites = {
+                temp.default_role: discord.PermissionOverwrite(read_messages=True, connect=False),
+                temp.me: discord.PermissionOverwrite(read_messages=True, connect=False)
+            }
+            timeChannel.append(await guild.create_voice_channel('Time', overwrites=overwrites, category=c[temp]))
         loops.setup(bot, timeChannel)
        
 bot.run(TOKEN)
