@@ -22,19 +22,16 @@ async def init():
         global timeChannel
         c = {}
         for a in bot.guilds:
+            overwrites = {
+                a.default_role: discord.PermissionOverwrite(read_messages=True, connect=False),
+                a.me: discord.PermissionOverwrite(read_messages=True, connect=False)
+            }
             for i in a.voice_channels:
                 if i.name[0] == "🕒":
                     timeChannel.append(i)
+                else:
+                    timeChannel.append(await a.create_voice_channel('Time', overwrites=overwrites))
 
-        for temp in bot.guilds:
-            overwrites = {
-                temp.default_role: discord.PermissionOverwrite(read_messages=True, connect=False),
-                temp.me: discord.PermissionOverwrite(read_messages=True, connect=False)
-            }
-            try:
-                timeChannel.append(await temp.create_voice_channel('Time', overwrites=overwrites))
-            except:
-                print("error")
         loops.setup(bot, timeChannel)
 
 bot.run(TOKEN)
