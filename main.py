@@ -29,8 +29,9 @@ async def init():
             for i in a.voice_channels:
                 if i.name[0] == "🕒":
                     timeChannel.append(i)
-                else:
-                    timeChannel.append(await a.create_voice_channel('Time', overwrites=overwrites))
+                    break
+            else:
+                timeChannel.append(await a.create_voice_channel('Time', overwrites=overwrites))
 
         loops.setup(bot, timeChannel)
 

@@ -10,7 +10,7 @@ class loops(commands.Cog):
 
     def __init__(self, bot, timeChannel):
         self.bot = bot
-        self.timeChannel = timeChannel
+        self.timeChannel: list = timeChannel
         self.loops.start()
 
     @tasks.loop(seconds=5)
@@ -22,7 +22,10 @@ class loops(commands.Cog):
         if now != prev_time:
             for i in self.timeChannel:
                 text = f"🕒 {now} (JST)"
-                await i.edit(name=text)
+                try:
+                    await i.edit(name=text)
+                except:
+                    self.timeChannel.remove(i)
 
 
 def setup(bot, timeChannel):
