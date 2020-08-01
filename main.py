@@ -16,7 +16,6 @@ bot = commands.Bot(command_prefix="huiogdfsihugdfshuipfsgdihupdfsiphudsgfihup")
 
 @bot.event
 async def on_ready():
-    print(discord.__version__)
     await init()
 
 async def init():
@@ -36,4 +35,5 @@ async def init():
 
         loops.setup(bot, timeChannel)
 
+print(discord.__version__)
 bot.run(TOKEN)
