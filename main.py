@@ -16,6 +16,7 @@ bot = commands.Bot(command_prefix="huiogdfsihugdfshuipfsgdihupdfsiphudsgfihup")
 
 @bot.event
 async def on_ready():
+    print(discord.__version__)
     await init()
 
 async def init():
