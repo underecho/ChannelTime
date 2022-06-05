@@ -21,7 +21,9 @@ class loops(commands.Cog):
         now = datetime.now(JST).strftime('%m/%d - %H:%M')
         if now != prev_time:
             for i in self.timeChannel:
-                text = f"🕒 {now} (JST)"
+                # text = f"🕒 {now} (JST)"
+
+                text = f"🕒 Under maintenance."
                 try:
                     await i.edit(name=text)
                 except:
